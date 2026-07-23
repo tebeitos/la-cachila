@@ -128,10 +128,10 @@ const schemaJSON = {
           </a>
         </div>
 
-        <div class="hero-rating-badge vintage-border">
+        <a href="#opiniones" class="hero-rating-badge vintage-border" id="hero-rating-badge-link">
           <span class="stars">★★★★★</span>
           <span class="rating-text"><strong>{negocio.rating} / 5</strong> en Google ({negocio.numResenas} opiniones)</span>
-        </div>
+        </a>
       </div>
     </section>
 
@@ -598,6 +598,15 @@ const schemaJSON = {
     padding: 0.5rem 1rem;
     background-color: var(--color-bg-card);
     border-radius: var(--border-radius-sm);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  }
+
+  .hero-rating-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-flat);
+    background-color: var(--color-accent-light);
   }
 
   .stars {
