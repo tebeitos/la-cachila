@@ -1,0 +1,1129 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { negocio, servicios } from '../data/negocio';
+
+// Schema.org AutoRepair JSON-LD Structured Data
+const schemaJSON = {
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  "name": negocio.nombre,
+  "image": "/logo.jpg",
+  "description": `${negocio.eslogan}. Taller mecánico en Gijón con servicio de reparación multimarca, diagnóstico rápido, explicaciones claras de averías y coche de cortesía.`,
+  "telephone": `+34${negocio.telefonoLink}`,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": negocio.direccion,
+    "addressLocality": negocio.ciudad,
+    "addressRegion": "Asturias",
+    "addressCountry": "ES"
+  },
+  "url": Astro.url.origin,
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+      "opens": "08:00",
+      "closes": "15:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Friday"],
+      "opens": "08:00",
+      "closes": "13:00"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": negocio.rating.replace(',', '.'),
+    "reviewCount": negocio.numResenas
+  }
+};
+---
+
+<Layout 
+  title="Taller Mecánico en Gijón | Reparación Multimarca | Talleres La Cachila"
+  description="Talleres La Cachila es tu taller mecánico de confianza en Gijón. Especialistas en reparación multimarca de vehículos, diagnóstico rápido de averías y coche de cortesía gratis."
+>
+  <!-- Schema.org Structured Data Injection -->
+  <script type="application/ld+json" set:html={JSON.stringify(schemaJSON)} />
+
+  <!-- HEADER / NAVIGATION -->
+  <header class="main-header vintage-border">
+    <div class="header-container">
+      <div class="logo-area">
+        <img src="/logo.jpg" alt="Logo de Talleres La Cachila" class="logo-img" />
+        <div class="logo-text">
+          <span class="logo-title">{negocio.nombre}</span>
+          <span class="logo-subtitle">{negocio.eslogan}</span>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#servicios" class="nav-link" id="nav-link-servicios">Servicios</a>
+        <a href="#elegirnos" class="nav-link" id="nav-link-elegirnos">Por qué elegirnos</a>
+        <a href="#opiniones" class="nav-link" id="nav-link-opiniones">Opiniones</a>
+        <a href="#contacto" class="nav-link" id="nav-link-contacto">Contacto</a>
+      </nav>
+      <div class="header-cta">
+        <a href={`tel:${negocio.telefonoLink}`} class="btn btn-sm" id="header-btn-tel">Llamar al taller</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="hero-container">
+        <div class="hero-badge-container">
+          <span class="vintage-badge">Tu Taller de Confianza en Gijón</span>
+        </div>
+        
+        <h1 class="hero-title">Mecánica y confianza de toda la vida.</h1>
+        <p class="hero-description">
+          En <strong>{negocio.nombre}</strong> combinamos la experiencia artesanal con la tecnología necesaria para cuidar tu vehículo. Diagnóstico honesto, explicaciones claras y soluciones a tu medida.
+        </p>
+
+        <div class="hero-ctas">
+          <a href={`tel:${negocio.telefonoLink}`} class="btn" id="hero-cta-call">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            Llamar ahora: {negocio.telefono}
+          </a>
+          <a href={`https://wa.me/${negocio.whatsapp}`} target="_blank" rel="noopener noreferrer" class="btn btn-secondary" id="hero-cta-whatsapp">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="btn-icon"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            Mensaje WhatsApp
+          </a>
+        </div>
+
+        <div class="hero-rating-badge vintage-border">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text"><strong>{negocio.rating} / 5</strong> en Google ({negocio.numResenas} opiniones)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: SERVICIOS -->
+    <section id="servicios" class="section-servicios">
+      <div class="container">
+        <div class="section-header">
+          <span class="vintage-badge">Soluciones de Calidad</span>
+          <h2>Servicios Profesionales</h2>
+          <div class="divider-vintage">
+            <div class="divider-vintage-dot"></div>
+          </div>
+          <p class="section-subtitle">Reparación multimarca en Gijón para todo tipo de vehículos. Cuidado experto y transparente.</p>
+        </div>
+
+        <div class="services-grid">
+          {servicios.map((servicio, idx) => (
+            <div class="service-card vintage-border vintage-shadow" id={`servicio-card-${idx}`}>
+              <div class="service-icon-container">
+                <span class="service-number">0{idx + 1}</span>
+              </div>
+              <h3>{servicio.titulo}</h3>
+              <p>{servicio.descripcion}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: POR QUÉ ELEGIRNOS -->
+    <section id="elegirnos" class="section-why">
+      <div class="container">
+        <div class="why-grid">
+          <div class="why-image-panel vintage-border vintage-shadow">
+            <img src="/logo.jpg" alt="Ilustración clásica taller La Cachila" class="why-logo-large" />
+            <div class="badge-since">
+              <span class="badge-since-title">La Cachila</span>
+              <span class="badge-since-desc">Compromiso y Garantía</span>
+            </div>
+          </div>
+          
+          <div class="why-content">
+            <span class="vintage-badge">Nuestros Valores</span>
+            <h2>¿Por qué confiar en nosotros?</h2>
+            <div class="divider-vintage" style="justify-content: flex-start; margin: 1.5rem 0;">
+              <div class="divider-vintage-dot" style="margin-left: 0;"></div>
+            </div>
+            <p class="why-intro">
+              Nos esforzamos por romper con la mala fama de los talleres tradicionales. Queremos que dejes tu coche sabiendo exactamente qué se le va a hacer, cuánto costará y con la tranquilidad de que estás en manos honestas.
+            </p>
+
+            <ul class="why-points">
+              <li class="why-point-item">
+                <div class="point-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                </div>
+                <div>
+                  <h4>Trato honesto y claro</h4>
+                  <p>Te hablamos en tu idioma. Sin tecnicismos innecesarios ni sorpresas de última hora en la factura.</p>
+                </div>
+              </li>
+              <li class="why-point-item">
+                <div class="point-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                </div>
+                <div>
+                  <h4>Explicamos todo antes de reparar</h4>
+                  <p>Detectamos la avería real y te explicamos detalladamente el problema y las opciones antes de tocar el vehículo.</p>
+                </div>
+              </li>
+              <li class="why-point-item">
+                <div class="point-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path><circle cx="7" cy="17" r="2"></circle><circle cx="17" cy="17" r="2"></circle><path d="M13 17h2"></path></svg>
+                </div>
+                <div>
+                  <h4>Coche de cortesía gratuito</h4>
+                  <p>Para reparaciones complejas o largas, te dejamos un vehículo sin coste para que puedas continuar con tu día a día.</p>
+                </div>
+              </li>
+              <li class="why-point-item">
+                <div class="point-icon-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                </div>
+                <div>
+                  <h4>Rapidez en el diagnóstico</h4>
+                  <p>Sabemos que tu tiempo es valioso. Trabajamos con agilidad para identificar la causa del problema lo antes posible.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: OPINIONES / RESEÑAS -->
+    <section id="opiniones" class="section-reviews">
+      <div class="container">
+        <div class="section-header">
+          <span class="vintage-badge">La Voz del Cliente</span>
+          <h2>Opiniones de Nuestros Clientes</h2>
+          <div class="divider-vintage">
+            <div class="divider-vintage-dot"></div>
+          </div>
+          <p class="section-subtitle">La opinión de quienes confían su seguridad en nuestras manos.</p>
+        </div>
+
+        <div class="reviews-summary vintage-border">
+          <div class="summary-score">
+            <span class="score-num">{negocio.rating}</span>
+            <div class="summary-stars">
+              <span class="stars-gold">★★★★★</span>
+              <span class="stars-label">Valoración media en Google</span>
+            </div>
+          </div>
+          <div class="summary-divider"></div>
+          <div class="summary-count">
+            <span class="count-num">{negocio.numResenas}</span>
+            <span class="count-label">Reseñas de clientes reales</span>
+          </div>
+        </div>
+
+        <div class="reviews-grid">
+          <div class="review-card vintage-border vintage-shadow" id="review-card-1">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">
+              "Buscaba un taller en Gijón que no me cobrara por cosas que no hacen falta. Me sorprendió gratamente el trato honesto. Me explicaron la avería de forma clara y el presupuesto final coincidió al céntimo. Muy recomendables."
+            </p>
+            <div class="review-author">
+              <span class="author-avatar">C</span>
+              <span class="author-name">Cliente de Google Maps</span>
+            </div>
+          </div>
+          <div class="review-card vintage-border vintage-shadow" id="review-card-2">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">
+              "Llevé mi coche por un problema eléctrico difícil de diagnosticar. En otros sitios me daban largas, pero aquí dieron con la avería enseguida. Además, me dejaron un coche de cortesía impecable mientras hacían la reparación."
+            </p>
+            <div class="review-author">
+              <span class="author-avatar">M</span>
+              <span class="author-name">Cliente de Google Maps</span>
+            </div>
+          </div>
+          <div class="review-card vintage-border vintage-shadow" id="review-card-3">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">
+              "Excelente comunicación desde el primer minuto. Me llamaron por teléfono para detallar la pieza rota y el coste antes de iniciar el trabajo. Rapidez en la entrega y precio muy justo. Volveré sin duda."
+            </p>
+            <div class="review-author">
+              <span class="author-avatar">A</span>
+              <span class="author-name">Cliente de Google Maps</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: UBICACIÓN Y CONTACTO -->
+    <section id="contacto" class="section-contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="vintage-badge">¿Dónde Estamos?</span>
+          <h2>Contacto y Ubicación</h2>
+          <div class="divider-vintage">
+            <div class="divider-vintage-dot"></div>
+          </div>
+          <p class="section-subtitle">Visítanos en el centro de Gijón o consúltanos cualquier duda.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info vintage-border vintage-shadow">
+            <h3>Información del Taller</h3>
+            <div class="divider-vintage" style="justify-content: flex-start; margin: 1rem 0;">
+              <div class="divider-vintage-dot" style="margin-left: 0;"></div>
+            </div>
+            
+            <div class="contact-details">
+              <div class="contact-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="contact-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <div>
+                  <strong>Dirección:</strong>
+                  <p>{negocio.direccion}, {negocio.ciudad}</p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="contact-icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <div>
+                  <strong>Teléfono:</strong>
+                  <p><a href={`tel:${negocio.telefonoLink}`} id="contact-link-phone">{negocio.telefono}</a></p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="contact-icon"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <div>
+                  <strong>Horario de Apertura:</strong>
+                  <p class="horario-text">{negocio.horario}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-actions">
+              <a href={`tel:${negocio.telefonoLink}`} class="btn" id="contact-cta-call">Llamar Ahora</a>
+              <a href={`https://wa.me/${negocio.whatsapp}`} target="_blank" rel="noopener noreferrer" class="btn btn-secondary" id="contact-cta-wa">Escribir por WhatsApp</a>
+            </div>
+          </div>
+
+          <div class="contact-map-container vintage-border vintage-shadow">
+            <iframe
+              src="https://maps.google.com/maps?q=C.%20Adaro,%203,%20Gij%C3%B3n&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              class="map-iframe"
+              allowfullscreen=""
+              loading="lazy"
+              title="Ubicación de Talleres La Cachila en Gijón"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="main-footer vintage-border">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <img src="/logo.jpg" alt="Logo Talleres La Cachila" class="footer-logo" />
+        <div>
+          <h3>{negocio.nombre}</h3>
+          <p>{negocio.eslogan}</p>
+        </div>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Información</h4>
+        <ul>
+          <li><a href="#servicios" id="footer-link-servicios">Servicios</a></li>
+          <li><a href="#elegirnos" id="footer-link-elegirnos">Por qué elegirnos</a></li>
+          <li><a href="#contacto" id="footer-link-contacto">Contacto y Mapa</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-legal">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/aviso-legal" id="footer-link-aviso">Aviso Legal</a></li>
+          <li><a href="/privacidad" id="footer-link-privacidad">Política de Privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; {new Date().getFullYear()} {negocio.nombre}. Todos los derechos reservados. Mecánica clásica y de confianza en Gijón.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP BUTTON -->
+  <a 
+    href={`https://wa.me/${negocio.whatsapp}`} 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    class="floating-whatsapp-btn" 
+    id="floating-whatsapp-btn"
+    title="Contactar por WhatsApp"
+  >
+    <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.717-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.863-9.73.001-2.595-1.013-5.035-2.857-6.882E-7-1.843-1.847-4.287-2.862-6.883-2.862-5.437 0-9.862 4.369-9.865 9.73-.001 1.705.464 3.37 1.346 4.827l-.995 3.64 3.73-.974zm13.125-6.953c-.3-.15-1.772-.875-2.046-.975-.276-.1-.476-.15-.676.15-.2.3-.775.975-.95 1.175-.175.2-.35.225-.65.075-.3-.15-1.267-.467-2.414-1.492-.893-.797-1.496-1.783-1.672-2.083-.176-.3-.019-.462.13-.61.135-.133.3-.35.45-.525.15-.175.2-.3.3-.5s.05-.375-.025-.525C11.533 7.825 11 6.55 10.774 6c-.221-.527-.443-.454-.606-.462-.156-.008-.335-.01-.515-.01-.18 0-.475.067-.723.338-.249.271-.951.93-.951 2.267 0 1.338.973 2.628 1.109 2.812.137.185 1.916 2.926 4.642 4.103.648.28 1.155.447 1.547.571.653.208 1.248.179 1.718.109.524-.078 1.771-.724 2.021-1.424.25-.699.25-1.3.175-1.425-.075-.125-.275-.2-.575-.35z"/>
+    </svg>
+  </a>
+</Layout>
+
+<style>
+  /* ----------------------------------------------------
+     PAGES SCROLLPADDING
+     ---------------------------------------------------- */
+  :global(html) {
+    scroll-padding-top: 100px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ----------------------------------------------------
+     HEADER & NAVIGATION
+     ---------------------------------------------------- */
+  .main-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--color-bg-card);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 0.75rem 0;
+    box-shadow: 0 4px 10px rgba(26, 26, 26, 0.05);
+  }
+
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .logo-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1.5px solid var(--color-text);
+    object-fit: cover;
+  }
+
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    line-height: 1.1;
+    color: var(--color-primary);
+  }
+
+  .logo-subtitle {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .nav-link {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    padding: 0.25rem 0;
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-primary);
+    transition: width 0.2s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  /* ----------------------------------------------------
+     HERO SECTION
+     ---------------------------------------------------- */
+  .hero-section {
+    padding: 5rem 0 4rem;
+    text-align: center;
+    position: relative;
+    border-bottom: 2px solid var(--color-text);
+    background-color: #f7f2e6;
+  }
+
+  .hero-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .hero-badge-container {
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+    color: var(--color-text);
+    max-width: 700px;
+  }
+
+  .hero-description {
+    font-size: clamp(1.1rem, 2vw, 1.25rem);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    max-width: 650px;
+    margin-bottom: 1rem;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-icon {
+    margin-right: 0.5rem;
+  }
+
+  .hero-rating-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--color-bg-card);
+    border-radius: var(--border-radius-sm);
+  }
+
+  .stars {
+    color: var(--color-accent);
+    letter-spacing: 2px;
+    font-size: 1.1rem;
+  }
+
+  .rating-text {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  /* ----------------------------------------------------
+     SECTION: SERVICIOS
+     ---------------------------------------------------- */
+  .section-servicios {
+    padding: 6rem 0;
+    border-bottom: 2px solid var(--color-text);
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 4rem;
+  }
+
+  .section-header h2 {
+    font-size: 2.2rem;
+    margin-top: 0.75rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .service-card {
+    background-color: var(--color-bg-card);
+    padding: 2.5rem 2rem;
+    border-radius: var(--border-radius);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-flat-hover);
+  }
+
+  .service-icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-accent-light);
+    border: 2px solid var(--color-text);
+    border-radius: var(--border-radius-sm);
+  }
+
+  .service-number {
+    font-family: var(--font-display);
+    color: var(--color-primary);
+    font-size: 1.25rem;
+  }
+
+  .service-card h3 {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    color: var(--color-text);
+  }
+
+  .service-card p {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  /* ----------------------------------------------------
+     SECTION: POR QUÉ ELEGIRNOS
+     ---------------------------------------------------- */
+  .section-why {
+    padding: 6rem 0;
+    background-color: #f5eedf;
+    border-bottom: 2px solid var(--color-text);
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .why-image-panel {
+    background-color: var(--color-bg-card);
+    padding: 3rem;
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    aspect-ratio: 1;
+  }
+
+  .why-logo-large {
+    width: 70%;
+    height: 70%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--color-text);
+    box-shadow: var(--shadow-flat);
+  }
+
+  .badge-since {
+    position: absolute;
+    bottom: -15px;
+    background-color: var(--color-accent);
+    border: 2px solid var(--color-text);
+    padding: 0.5rem 1.5rem;
+    box-shadow: var(--shadow-flat-sm);
+    border-radius: var(--border-radius-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .badge-since-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    line-height: 1;
+    color: var(--color-text);
+  }
+
+  .badge-since-desc {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .why-content h2 {
+    font-size: 2.2rem;
+    margin-top: 0.5rem;
+  }
+
+  .why-intro {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .why-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .why-point-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .point-icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+    border: 2px solid var(--color-text);
+    border-radius: var(--border-radius-sm);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .why-point-item h4 {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+  }
+
+  .why-point-item p {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+  }
+
+  /* ----------------------------------------------------
+     SECTION: OPINIONES
+     ---------------------------------------------------- */
+  .section-reviews {
+    padding: 6rem 0;
+    border-bottom: 2px solid var(--color-text);
+  }
+
+  .reviews-summary {
+    background-color: var(--color-bg-card);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    max-width: 600px;
+    margin: 0 auto 3.5rem;
+    border-radius: var(--border-radius-sm);
+    text-align: center;
+  }
+
+  .summary-score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .score-num {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: var(--color-primary);
+    line-height: 1;
+  }
+
+  .summary-stars {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stars-gold {
+    color: var(--color-accent);
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+  }
+
+  .stars-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--color-text-muted);
+  }
+
+  .summary-divider {
+    width: 2px;
+    height: 60px;
+    background-color: var(--color-text);
+  }
+
+  .summary-count {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .count-num {
+    font-family: var(--font-serif);
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: var(--color-text);
+    line-height: 1;
+  }
+
+  .count-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--color-text-muted);
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .review-card {
+    background-color: var(--color-bg-card);
+    padding: 2.5rem 2rem;
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .review-stars {
+    color: var(--color-accent);
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+  }
+
+  .review-text {
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .review-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .author-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: var(--color-accent-light);
+    border: 1.5px solid var(--color-text);
+    border-radius: 50%;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--color-text);
+  }
+
+  .author-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  /* ----------------------------------------------------
+     SECTION: CONTACTO Y MAPA
+     ---------------------------------------------------- */
+  .section-contact {
+    padding: 6rem 0;
+    background-color: #f7f2e6;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.22fr;
+    gap: 3rem;
+  }
+
+  .contact-info {
+    background-color: var(--color-bg-card);
+    padding: 3rem;
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .contact-info h3 {
+    font-size: 1.8rem;
+    color: var(--color-text);
+  }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .contact-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .contact-icon {
+    color: var(--color-primary);
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .contact-item strong {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+  }
+
+  .contact-item p {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+  }
+
+  .contact-item a {
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .horario-text {
+    white-space: pre-line;
+    line-height: 1.5;
+  }
+
+  .contact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .contact-map-container {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    height: 100%;
+    min-height: 400px;
+    background-color: var(--color-bg-card);
+  }
+
+  .map-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  /* ----------------------------------------------------
+     FOOTER
+     ---------------------------------------------------- */
+  .main-footer {
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    padding: 4rem 0 0;
+  }
+
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(250, 246, 238, 0.1);
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-basis: 350px;
+  }
+
+  .footer-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1.5px solid var(--color-bg);
+    object-fit: cover;
+  }
+
+  .footer-brand h3 {
+    font-family: var(--font-display);
+    color: var(--color-primary);
+    font-size: 1.6rem;
+    line-height: 1.1;
+  }
+
+  .footer-brand p {
+    color: #A0A0A0;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+  }
+
+  .footer-links h4,
+  .footer-legal h4 {
+    font-family: var(--font-serif);
+    color: var(--color-accent);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .footer-links ul,
+  .footer-legal ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-links a,
+  .footer-legal a {
+    color: #D3D3D3;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+  }
+
+  .footer-links a:hover,
+  .footer-legal a:hover {
+    color: var(--color-accent);
+  }
+
+  .footer-bottom {
+    padding: 1.5rem 0;
+    text-align: center;
+    background-color: #111111;
+  }
+
+  .footer-bottom p {
+    font-size: 0.8rem;
+    color: #888888;
+  }
+
+  /* ----------------------------------------------------
+     FLOATING WHATSAPP BUTTON
+     ---------------------------------------------------- */
+  .floating-whatsapp-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    color: white;
+    border: 2px solid var(--color-text);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-flat);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .floating-whatsapp-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 6px 8px 0px var(--color-text);
+    background-color: #22C35E;
+    color: white;
+  }
+
+  .floating-whatsapp-btn:active {
+    transform: translateY(2px);
+    box-shadow: var(--shadow-flat-sm);
+  }
+
+  /* ----------------------------------------------------
+     RESPONSIVE BREAKPOINTS
+     ---------------------------------------------------- */
+  @media (max-width: 968px) {
+    .why-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .why-image-panel {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+    .contact-map-container {
+      min-height: 350px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .header-container {
+      flex-direction: column;
+      text-align: center;
+    }
+    .nav-links {
+      margin: 0.5rem 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .reviews-summary {
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 1.5rem;
+    }
+    .summary-divider {
+      width: 80%;
+      height: 2px;
+    }
+  }
+</style>

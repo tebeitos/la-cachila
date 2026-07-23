@@ -1,0 +1,293 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { negocio } from '../data/negocio';
+---
+
+<Layout 
+  title={`Política de Privacidad | ${negocio.nombre}`}
+  description={`Política de Privacidad y protección de datos de Talleres La Cachila, taller mecánico en Gijón.`}
+>
+  <!-- HEADER / NAVIGATION (Simple version) -->
+  <header class="main-header vintage-border">
+    <div class="header-container">
+      <a href="/" class="logo-area">
+        <img src="/logo.jpg" alt="Logo de Talleres La Cachila" class="logo-img" />
+        <div class="logo-text">
+          <span class="logo-title">{negocio.nombre}</span>
+          <span class="logo-subtitle">{negocio.eslogan}</span>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="/" class="nav-link">Volver al Inicio</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="legal-content">
+    <div class="container">
+      <span class="vintage-badge">Protección de Datos</span>
+      <h1>Política de Privacidad</h1>
+      <div class="divider-vintage" style="justify-content: flex-start; margin: 1.5rem 0;">
+        <div class="divider-vintage-dot" style="margin-left: 0;"></div>
+      </div>
+
+      <div class="legal-sections">
+        <section>
+          <h2>1. Principio de Información</h2>
+          <p>
+            A efectos de lo previsto en la Ley Orgánica 3-2018 de 5 de diciembre de Protección de Datos Personales y Garantía de Derechos Digitales (LOPDGDD), y en el Reglamento General de Protección de Datos (RGPD) 2016-679, Talleres La Cachila informa al usuario de que los datos de carácter personal que nos facilite serán tratados con la única finalidad de atender sus consultas, gestionar las citas en el taller o proveer los servicios de reparación contratados.
+          </p>
+        </section>
+
+        <section>
+          <h2>2. Finalidad del Tratamiento y Legitimación</h2>
+          <p>
+            Los datos personales recopilados a través de llamadas de teléfono, contacto por WhatsApp o comunicación presencial en nuestro establecimiento se tratarán con las siguientes finalidades:
+          </p>
+          <ul>
+            <li>Gestionar las peticiones de presupuestos y citas previas.</li>
+            <li>Realizar las reparaciones y el mantenimiento contratados de los vehículos.</li>
+            <li>Facturación y gestión contable de los servicios prestados.</li>
+          </ul>
+          <p>
+            La base legal para el tratamiento de sus datos es la ejecución del contrato de prestación de servicios o la atención de su solicitud previa al contrato (petición de cita o presupuesto).
+          </p>
+        </section>
+
+        <section>
+          <h2>3. Conservación de los Datos</h2>
+          <p>
+            Los datos personales proporcionados se conservarán durante el tiempo necesario para cumplir con la finalidad para la que se recaban y para determinar las posibles responsabilidades que se pudieran derivar de dicha finalidad y de la relación con el cliente, además de los periodos exigidos por la legislación fiscal y mercantil.
+          </p>
+        </section>
+
+        <section>
+          <h2>4. Comunicación de los Datos</h2>
+          <p>
+            Los datos de los clientes no se comunicarán a terceros, salvo obligación legal (como administraciones tributarias) o cuando sea estrictamente necesario para la realización del servicio contratado (por ejemplo, peritos de seguros o gestores de garantía).
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Derechos del Usuario</h2>
+          <p>
+            Cualquier persona tiene derecho a obtener confirmación sobre si estamos tratando sus datos personales. Las personas interesadas tienen derecho a:
+          </p>
+          <ul>
+            <li>Acceder a sus datos personales.</li>
+            <li>Solicitar la rectificación de los datos inexactos.</li>
+            <li>Solicitar su supresión cuando, entre otros motivos, los datos ya no sean necesarios para los fines que fueron recogidos.</li>
+            <li>Solicitar la limitación de su tratamiento, en cuyo caso únicamente los conservaremos para el ejercicio o la defensa de reclamaciones.</li>
+            <li>Oponerse al tratamiento de sus datos.</li>
+          </ul>
+          <p>
+            Para ejercer estos derechos, el usuario puede dirigir una comunicación por escrito a nuestra dirección física en {negocio.direccion}, {negocio.ciudad}, o mediante llamada telefónica al {negocio.telefono}, acreditando debidamente su identidad.
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="main-footer vintage-border">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <img src="/logo.jpg" alt="Logo Talleres La Cachila" class="footer-logo" />
+        <div>
+          <h3>{negocio.nombre}</h3>
+          <p>{negocio.eslogan}</p>
+        </div>
+      </div>
+      <div class="footer-legal">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/aviso-legal">Aviso Legal</a></li>
+          <li><a href="/privacidad">Política de Privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; {new Date().getFullYear()} {negocio.nombre}. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* Header */
+  .main-header {
+    background-color: var(--color-bg-card);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    padding: 0.75rem 0;
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .logo-img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1.5px solid var(--color-text);
+    object-fit: cover;
+  }
+
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    line-height: 1.1;
+    color: var(--color-primary);
+  }
+
+  .logo-subtitle {
+    font-size: 0.65rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .nav-links a {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--color-text);
+    text-transform: uppercase;
+  }
+
+  /* Content */
+  .legal-content {
+    padding: 4rem 0 6rem;
+    background-color: var(--color-bg-card);
+    border-bottom: 2px solid var(--color-text);
+    flex-grow: 1;
+  }
+
+  .legal-content h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--color-text);
+    margin-top: 0.5rem;
+  }
+
+  .legal-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-top: 2rem;
+  }
+
+  .legal-sections h2 {
+    font-size: 1.4rem;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-sections p {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+
+  .legal-sections ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .legal-sections li {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+  }
+
+  /* Footer */
+  .main-footer {
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    border: none;
+    padding: 3rem 0 0;
+  }
+
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .footer-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1.5px solid var(--color-bg);
+    object-fit: cover;
+  }
+
+  .footer-brand h3 {
+    font-family: var(--font-display);
+    color: var(--color-primary);
+    font-size: 1.4rem;
+  }
+
+  .footer-brand p {
+    color: #A0A0A0;
+    font-size: 0.75rem;
+  }
+
+  .footer-legal ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .footer-legal a {
+    color: #D3D3D3;
+    font-size: 0.85rem;
+  }
+
+  .footer-legal a:hover {
+    color: var(--color-accent);
+  }
+
+  .footer-bottom {
+    padding: 1rem 0;
+    text-align: center;
+    background-color: #111111;
+  }
+
+  .footer-bottom p {
+    font-size: 0.75rem;
+    color: #888888;
+  }
+</style>

@@ -1,0 +1,222 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Talleres La Cachila - Mantenimiento y reparación de vehículos de confianza en Gijón" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={Astro.url.href} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={Astro.url.href} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+
+    <!-- Google Fonts: Abril Fatface (Retro display), Playfair Display (Serif), and Inter (Sans-serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  /* ----------------------------------------------------
+     BASE DESIGN SYSTEM: VINTAGE CLASSIC IDENTITY
+     ---------------------------------------------------- */
+  :root {
+    /* Palette */
+    --color-primary: #C1272D;       /* Rojo vintage intenso (del coche) */
+    --color-primary-dark: #A11E23;  /* Rojo más oscuro para hovers */
+    --color-text: #1A1A1A;          /* Negro clásico para texto y contornos */
+    --color-text-muted: #4A4A4A;    /* Gris oscuro para textos secundarios */
+    --color-accent: #C9A227;        /* Dorado/mostaza vintage */
+    --color-accent-light: #F4E8C1;  /* Dorado pálido de fondo */
+    --color-bg: #FAF6EE;            /* Fondo crema/papel antiguo (no blanco puro) */
+    --color-bg-card: #FCFAF5;       /* Fondo de tarjeta ligeramente más claro */
+    --color-white: #FFFFFF;
+    
+    /* Typography */
+    --font-display: 'Abril Fatface', serif;
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Inter', sans-serif;
+    
+    /* Layout */
+    --border-width: 2px;
+    --border-radius: 8px;
+    --border-radius-sm: 4px;
+    
+    /* Box Shadows (Crisp vintage retro shadows) */
+    --shadow-flat: 4px 4px 0px var(--color-text);
+    --shadow-flat-hover: 6px 6px 0px var(--color-text);
+    --shadow-flat-sm: 2px 2px 0px var(--color-text);
+  }
+
+  /* Reset & Base Styles */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-bg);
+    /* Subtle vintage paper/cardboard texture overlay */
+    background-image: radial-gradient(var(--color-text) 0.5px, transparent 0.5px), radial-gradient(var(--color-text) 0.5px, var(--color-bg) 0.5px);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+    background-opacity: 0.02; /* Handled via transparency in colors below */
+    background-image: radial-gradient(rgba(26, 26, 26, 0.02) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    color: var(--color-text);
+    font-weight: 800;
+    line-height: 1.25;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 400; /* Abril Fatface only has regular weight */
+  }
+
+  p {
+    color: var(--color-text-muted);
+  }
+
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  a:hover {
+    color: var(--color-primary-dark);
+  }
+
+  /* Buttons & Vintage Interactive Elements */
+  button, .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+    border: var(--border-width) solid var(--color-text);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    box-shadow: var(--shadow-flat);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  }
+
+  button:hover, .btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-flat-hover);
+    background-color: var(--color-primary-dark);
+  }
+
+  button:active, .btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: var(--shadow-flat-sm);
+  }
+
+  /* Secondary Button style */
+  button.secondary, .btn-secondary {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  button.secondary:hover, .btn-secondary:hover {
+    background-color: var(--color-accent-light);
+  }
+
+  /* Vintage Decorative Elements */
+  .vintage-border {
+    border: var(--border-width) solid var(--color-text);
+  }
+
+  .vintage-shadow {
+    box-shadow: var(--shadow-flat);
+  }
+
+  .divider-vintage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0;
+  }
+
+  .divider-vintage::before,
+  .divider-vintage::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    background-color: var(--color-text);
+  }
+
+  .divider-vintage-dot {
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-primary);
+    border: 2px solid var(--color-text);
+    transform: rotate(45deg);
+    margin: 0 1rem;
+  }
+
+  .vintage-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-style: italic;
+    font-size: 0.85rem;
+    background-color: var(--color-accent);
+    color: var(--color-text);
+    border: 1.5px solid var(--color-text);
+    border-radius: 20px;
+  }
+</style>
