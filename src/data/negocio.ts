@@ -12,8 +12,8 @@ export const negocio = {
 };
 
 export const servicios = [
-  { titulo: "Mecánica multimarca", descripcion: "Mantenimiento y reparación de todo tipo de vehículos: coches, furgonetas, todoterrenos." },
-  { titulo: "Diagnóstico y avería", descripcion: "Detectamos el problema real y te lo explicamos con claridad antes de tocar nada." },
-  { titulo: "Reparaciones mayores", descripcion: "Desde el mantenimiento básico hasta averías complejas de motor." },
-  { titulo: "Coche de cortesía", descripcion: "En reparaciones largas, te dejamos un vehículo para que sigas con tu día a día." },
+  { titulo: "Mecánica multimarca", descripcion: "Coche, furgo o todoterreno — si tiene motor y cuatro ruedas, lo revisamos. Multimarca de verdad, no solo de boquilla." },
+  { titulo: "Diagnóstico y avería", descripcion: "Ese ruidito raro que hace tu coche desde hace semanas y que ibas ignorando — lo encontramos y te lo explicamos sin rollos técnicos. Luego decides tú." },
+  { titulo: "Reparaciones mayores", descripcion: "Desde el cambio de aceite de cada año hasta esa avería de motor que te ha quitado el sueño. Lo asumimos igual." },
+  { titulo: "Coche de cortesía", descripcion: "Si la reparación se alarga, te prestamos un coche. Porque la vida no espera a que el tuyo esté listo." },
 ];
