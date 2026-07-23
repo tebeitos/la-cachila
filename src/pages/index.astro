@@ -1180,21 +1180,29 @@ const schemaJSON = {
   }
 
   @media (max-width: 768px) {
+    .main-header {
+      padding: 0.5rem 0;
+    }
     .header-container {
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
       position: relative;
+      padding: 0 1rem;
+    }
+    .logo-area {
+      gap: 0.5rem;
     }
     .logo-img {
-      width: 65px;
-      height: 65px;
+      width: 55px;
+      height: 55px;
     }
     .logo-title {
       font-size: 1.25rem;
+      white-space: nowrap;
     }
     .logo-subtitle {
-      font-size: 0.65rem;
+      display: none; /* Ocultar el eslogan en móvil para encajar todo en una sola línea */
     }
     .hamburger-menu {
       display: flex;
