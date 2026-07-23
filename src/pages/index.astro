@@ -63,9 +63,6 @@ const schemaJSON = {
         <a href="#opiniones" class="nav-link" id="nav-link-opiniones">Opiniones</a>
         <a href="#contacto" class="nav-link" id="nav-link-contacto">Contacto</a>
       </nav>
-      <div class="header-cta">
-        <a href={`tel:${negocio.telefonoLink}`} class="btn btn-sm" id="header-btn-tel">Llamar al taller</a>
-      </div>
     </div>
   </header>
 
@@ -416,8 +413,8 @@ const schemaJSON = {
   }
 
   .logo-img {
-    width: 50px;
-    height: 50px;
+    width: 75px;
+    height: 75px;
     border-radius: 50%;
     border: 1.5px solid var(--color-text);
     object-fit: cover;
@@ -430,7 +427,7 @@ const schemaJSON = {
 
   .logo-title {
     font-family: var(--font-display);
-    font-size: 1.4rem;
+    font-size: 1.7rem;
     line-height: 1.1;
     color: var(--color-primary);
   }
@@ -1110,6 +1107,13 @@ const schemaJSON = {
     .header-container {
       flex-direction: column;
       text-align: center;
+    }
+    .logo-img {
+      width: 50px;
+      height: 50px;
+    }
+    .logo-title {
+      font-size: 1.4rem;
     }
     .nav-links {
       margin: 0.5rem 0;
