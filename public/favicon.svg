@@ -1,47 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <!-- Outer Ring (Gold) -->
-  <circle cx="256" cy="256" r="240" fill="#C9A227" stroke="#1A1A1A" stroke-width="16" />
-  <!-- Inner Circle (Red) -->
-  <circle cx="256" cy="256" r="210" fill="#C1272D" stroke="#1A1A1A" stroke-width="12" />
+  <!-- Circle Badge background -->
+  <circle cx="256" cy="256" r="230" fill="#C1272D" stroke="#1A1A1A" stroke-width="24" />
+  <!-- Inner golden ring -->
+  <circle cx="256" cy="256" r="200" fill="none" stroke="#C9A227" stroke-width="16" />
   
-  <!-- Stylized Vintage 1930s Car Silhouette (Cream/White) -->
-  <g fill="#FAF6EE" stroke="#1A1A1A" stroke-width="16" stroke-linejoin="round">
-    <!-- Car body & fenders path -->
-    <path d="M 80 320 
-             C 80 300, 100 290, 120 290 
-             L 180 290 
-             C 190 290, 200 270, 210 240 
-             L 230 200 
-             C 240 170, 260 160, 290 160 
-             L 370 160 
-             C 400 160, 420 180, 420 210 
-             L 420 290 
-             C 440 290, 450 310, 450 330 
-             L 450 350 
-             C 450 360, 440 370, 420 370 
-             L 390 370
-             C 380 340, 350 320, 320 320 
-             C 290 320, 260 340, 250 370 
-             L 210 370 
-             C 200 340, 170 320, 140 320 
-             C 110 320, 80 340, 70 370 
-             L 50 370
-             C 40 370, 30 360, 30 350
-             Z" />
-             
-    <!-- Cabin Windows (Black) -->
-    <path d="M 235 210 L 285 210 L 285 270 L 220 270 Z" fill="#1A1A1A" stroke="none" />
-    <path d="M 300 210 L 390 210 L 390 270 L 300 270 Z" fill="#1A1A1A" stroke="none" />
-
-    <!-- Wheels (Black with Gold Center) -->
-    <!-- Front Wheel -->
-    <circle cx="140" cy="370" r="45" fill="#1A1A1A" stroke="#FAF6EE" stroke-width="8" />
-    <circle cx="140" cy="370" r="16" fill="#C9A227" stroke="#1A1A1A" stroke-width="4" />
-    <!-- Rear Wheel -->
-    <circle cx="320" cy="370" r="45" fill="#1A1A1A" stroke="#FAF6EE" stroke-width="8" />
-    <circle cx="320" cy="370" r="16" fill="#C9A227" stroke="#1A1A1A" stroke-width="4" />
-    
-    <!-- Headlight (Gold/Yellow) -->
-    <circle cx="70" cy="270" r="22" fill="#C9A227" stroke="#1A1A1A" stroke-width="8" />
-  </g>
+  <!-- Stylized Retro "C" Initial (Cream) -->
+  <path d="M 360 180
+           C 330 150, 290 140, 256 140
+           C 170 140, 130 200, 130 256
+           C 130 312, 170 372, 256 372
+           C 290 372, 330 362, 360 332
+           C 370 322, 360 300, 345 300
+           C 335 300, 325 305, 315 315
+           C 295 330, 275 335, 256 335
+           C 200 335, 175 295, 175 256
+           C 175 217, 200 177, 256 177
+           C 275 177, 295 182, 315 197
+           C 325 207, 335 212, 345 212
+           C 360 212, 370 190, 360 180 Z" 
+        fill="#FAF6EE" 
+        stroke="#1A1A1A" 
+        stroke-width="16" 
+        stroke-linejoin="round" />
 </svg>
